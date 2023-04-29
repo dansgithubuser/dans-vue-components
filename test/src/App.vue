@@ -4,10 +4,12 @@ import { default as DansInput } from '../../src/components/Input.vue';
 import Radio from '../../src/components/Radio.vue';
 import Plot from '../../src/components/Plot.vue';
 
+import '../../src/dans.css';
+
 </script>
 
 <template>
-  <form>
+  <form class="spaced">
     <DansInput
       v-model="sin"
       label="SIN"
