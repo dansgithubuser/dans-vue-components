@@ -3,6 +3,7 @@
 import { default as DansInput } from '../../src/components/Input.vue';
 import Radio from '../../src/components/Radio.vue';
 import Plot from '../../src/components/Plot.vue';
+import Collapse from '../../src/components/Collapse.vue';
 
 import '../../src/dans.css';
 
@@ -39,6 +40,14 @@ import '../../src/dans.css';
     :entries="plotEntries"
     @keydown="alert($event.key)"
   />
+  <Collapse label="Secret Books" class="m1t">
+    <div>Necronomicon</div>
+    <div>Horcruxes</div>
+    <div>Introduction to Necromancy</div>
+  </Collapse>
+  <div class="col spaced">
+    <a href="https://www.duckduckgo.com" target="_blank">duckduckgo</a>
+  </div>
 </template>
 
 <script>
