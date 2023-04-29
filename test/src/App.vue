@@ -2,6 +2,7 @@
 
 import { default as DansInput } from '../../src/components/Input.vue';
 import Radio from '../../src/components/Radio.vue';
+import Plot from '../../src/components/Plot.vue';
 
 </script>
 
@@ -30,6 +31,12 @@ import Radio from '../../src/components/Radio.vue';
     <p>selected flavor is: {{ flavor }}</p>
     <input type="submit" value="submit">
   </form>
+  <Plot
+    :width="plotWidth"
+    :height="400"
+    :entries="plotEntries"
+    @keydown="alert($event.key)"
+  />
 </template>
 
 <script>
@@ -41,6 +48,34 @@ export default {
       phoneNumber: 0,
       flavor: null,
     };
+  },
+  computed: {
+    plotWidth() {
+      return window.innerWidth - 16;
+    },
+    plotEntries() {
+      const vertices = [];
+      for (let i = 0; i < 10000; ++i) {
+        const x = Math.random();
+        const y = Math.random() * Math.random();
+        vertices.push({
+          x,
+          y,
+          r: Math.random() * x,
+          g: Math.random() * y,
+          b: Math.random() * ((2 * x - 1) ** 2 + (2 * y - 1) ** 2),
+          a: Math.random() / 8,
+        });
+      }
+      return [
+        {
+          name: '1',
+          usage: 'static',
+          mode: 'lines',
+          vertices,
+        },
+      ];
+    },
   },
   methods: {
     alert(msg) {
