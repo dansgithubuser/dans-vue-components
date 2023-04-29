@@ -4,6 +4,7 @@ import { default as DansInput } from '../../src/components/Input.vue';
 import Radio from '../../src/components/Radio.vue';
 import Plot from '../../src/components/Plot.vue';
 import Collapse from '../../src/components/Collapse.vue';
+import Search from '../../src/components/Search.vue';
 
 import '../../src/dans.css';
 
@@ -32,6 +33,7 @@ import '../../src/dans.css';
       ]"
     />
     <p>selected flavor is: {{ flavor }}</p>
+    <Search label="Eye Color" :options="searchOptions" />
     <input type="submit" value="submit">
   </form>
   <Plot
@@ -85,6 +87,15 @@ export default {
           mode: 'lines',
           vertices,
         },
+      ];
+    },
+    searchOptions() {
+      return [
+        'Red',
+        'Green',
+        'Blue',
+        'Brown',
+        'Black',
       ];
     },
   },
