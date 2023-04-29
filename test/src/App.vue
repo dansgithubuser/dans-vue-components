@@ -1,11 +1,24 @@
 <script setup>
 
-import TextInput from '../../src/components/TextInput.vue'
+import { default as DansInput } from '../../src/components/Input.vue';
 
 </script>
 
 <template>
-  <TextInput v-model="sin" label="SIN" @keyup.enter="alert(sin)" />
+  <form>
+    <DansInput
+      v-model="sin"
+      label="SIN"
+      @keyup.enter="alert(sin)"
+    />
+    <DansInput
+      v-model="phoneNumber"
+      type="number"
+      label="phone number"
+      @keyup.enter="alert(phoneNumber)"
+    />
+    <input type="submit" value="submit">
+  </form>
 </template>
 
 <script>
@@ -14,7 +27,7 @@ export default {
   data() {
     return {
       sin: '',
-      console: window.console,
+      phoneNumber: 0,
     };
   },
   methods: {

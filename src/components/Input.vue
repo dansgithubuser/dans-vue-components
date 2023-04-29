@@ -1,5 +1,5 @@
 <template>
-  <div class="d-text-input">
+  <div class="dans-input">
     <div>
       <small>{{ label }}</small>
     </div>
@@ -21,6 +21,7 @@ export default {
     label: String,
   },
   emits: ['update:modelValue'],
+  inheritAttrs: false,
 }
 
 </script>
