@@ -1,6 +1,7 @@
 <script setup>
 
 import { default as DansInput } from '../../src/components/Input.vue';
+import Radio from '../../src/components/Radio.vue';
 
 </script>
 
@@ -17,6 +18,16 @@ import { default as DansInput } from '../../src/components/Input.vue';
       label="phone number"
       @keyup.enter="alert(phoneNumber)"
     />
+    <Radio
+      v-model="flavor"
+      :options="[
+        { name: 'French Vanilla', value: 'vanilla' },
+        { name: 'Chocolate Supreme', value: 'chocolate' },
+        { name: 'Fruit Party', value: 'strawberry' },
+        { name: 'Other', value: null },
+      ]"
+    />
+    <p>selected flavor is: {{ flavor }}</p>
     <input type="submit" value="submit">
   </form>
 </template>
@@ -28,6 +39,7 @@ export default {
     return {
       sin: '',
       phoneNumber: 0,
+      flavor: null,
     };
   },
   methods: {
