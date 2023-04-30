@@ -1,7 +1,7 @@
 <template>
   <div :class="class" :style="style">
     <div>
-      <small>{{ label }}</small>
+      <small class="dans-label">{{ label }}</small>
     </div>
     <div>
       <input
