@@ -1,8 +1,6 @@
 <template>
   <div class="dans-input">
-    <div>
-      <small class="dans-label">{{ label }}</small>
-    </div>
+    <div class="dans-label">{{ label }}</div>
     <div>
       <input
         :value="modelValue"
