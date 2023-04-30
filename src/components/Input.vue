@@ -1,5 +1,5 @@
 <template>
-  <div :class="class" :style="style">
+  <div class="dans-input">
     <div>
       <small class="dans-label">{{ label }}</small>
     </div>
@@ -19,8 +19,6 @@ export default {
   props: {
     modelValue: {},
     label: String,
-    class: { default: 'dans-input' },
-    style: { default: '' },
   },
   emits: ['update:modelValue'],
   inheritAttrs: false,
