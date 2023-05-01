@@ -40,6 +40,14 @@
   margin-bottom: 1rem;
 }
 
+.mal {
+  margin-left: auto;
+}
+
+.mat {
+  margin-top: auto;
+}
+
 .dans-label {
   font-size: smaller;
   opacity: 0.5;

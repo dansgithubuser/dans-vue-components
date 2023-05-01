@@ -1,9 +1,10 @@
 <template>
-  <div class="dans-collapse">
-    <div class="dans-collapse-header" @click="collapsed = !collapsed">
+  <div ref="self" class="dans-collapse">
+    <div class="dans-collapse-header" @click="toggle()">
       <div>{{ label }}</div>
-      <div v-if="collapsed">➕</div>
-      <div v-else>➖</div>
+      <div v-if="kbKey" class="dans-label">&nbsp;({{ kbKey }})</div>
+      <div v-if="collapsed" class="mal">➕</div>
+      <div v-else class="mal">➖</div>
     </div>
     <div v-if="!collapsed" class="dans-collapse-body">
       <slot></slot>
@@ -16,11 +17,36 @@
 export default {
   props: {
     label: String,
+    kbKey: String,
   },
   data() {
     return {
       collapsed: true,
     };
+  },
+  methods: {
+    toggle() {
+      this.collapsed = !this.collapsed;
+    },
+    async handleKbEvent(event) {
+      if (event.key === this.kbKey) {
+        this.toggle();
+        if (!this.collapsed) {
+          await this.$nextTick();
+          this.$refs.self.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+      }
+    },
+  },
+  mounted() {
+    if (this.kbKey) {
+      window.addEventListener('keydown', this.handleKbEvent);
+    }
+  },
+  unmounted() {
+    if (this.kbKey) {
+      window.removeEventListener('keydown', this.handleKbEvent);
+    }
   },
 }
 
@@ -33,7 +59,6 @@ export default {
   cursor: pointer;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
 }
 
 .dans-collapse-body {
