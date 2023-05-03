@@ -15,6 +15,7 @@
 <script>
 
 export default {
+  name: 'Collapse',
   props: {
     label: String,
     kbKey: String,

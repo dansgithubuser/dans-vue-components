@@ -14,6 +14,7 @@
 <script>
 
 export default {
+  name: 'ClickShow',
   data() {
     return {
       clicks: 0,

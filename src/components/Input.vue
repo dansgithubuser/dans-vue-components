@@ -14,6 +14,7 @@
 <script>
 
 export default {
+  name: 'Input',
   props: {
     modelValue: {},
     label: String,

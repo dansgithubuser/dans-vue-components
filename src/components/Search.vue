@@ -18,6 +18,7 @@
 <script>
 
 export default {
+  name: 'Search',
   props: {
     modelValue: {},
     label: String,
