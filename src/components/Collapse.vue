@@ -3,8 +3,8 @@
     <div class="dans-collapse-header" @click="toggle()">
       <div>{{ label }}</div>
       <div v-if="kbKey" class="dans-label">&nbsp;({{ kbKey }})</div>
-      <div v-if="collapsed" class="mal">➕</div>
-      <div v-else class="mal">➖</div>
+      <div v-if="collapsed" class="mal">+</div>
+      <div v-else class="mal">−</div>
     </div>
     <div v-if="!collapsed" class="dans-collapse-body">
       <slot></slot>
