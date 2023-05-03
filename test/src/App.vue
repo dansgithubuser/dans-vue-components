@@ -1,9 +1,10 @@
 <script setup>
 
-import { default as DansInput } from '../../src/components/Input.vue';
-import Radio from '../../src/components/Radio.vue';
-import Plot from '../../src/components/Plot.vue';
+import ClickShow from '../../src/components/ClickShow.vue';
 import Collapse from '../../src/components/Collapse.vue';
+import { default as DansInput } from '../../src/components/Input.vue';
+import Plot from '../../src/components/Plot.vue';
+import Radio from '../../src/components/Radio.vue';
 import Search from '../../src/components/Search.vue';
 
 import '../../src/dans.css';
@@ -150,7 +151,11 @@ import '../../src/dans.css';
     <div>Struwwelpeter: Merry Stories and Funny Pictures by Heinrich Hoffmann (167)</div>
   </Collapse>
   <div class="col spaced">
-    <a href="https://www.duckduckgo.com" target="_blank">duckduckgo</a>
+    <div class="row">
+      <ClickShow>
+        <a href="https://www.duckduckgo.com" target="_blank">duckduckgo</a>
+      </ClickShow>
+    </div>
   </div>
   <Collapse label="Super Secret Books" kb-key="s" style="margin-top: 80rem">
     <div>Introduction to Thermodynamics</div>
