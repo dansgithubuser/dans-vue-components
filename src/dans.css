@@ -52,3 +52,28 @@
   font-size: smaller;
   opacity: 0.5;
 }
+
+.dans-toast-container {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+}
+
+.dans-toast {
+  margin: 0.5rem;
+  padding: 0.5rem;
+  background-color: white;
+  box-shadow: 0px 0px 0.25rem grey inset;
+}
+
+.dans-toast-success {
+  background-color: palegreen;
+}
+
+.dans-toast-warn {
+  background-color: yellow;
+}
+
+.dans-toast-error {
+  background-color: lightcoral;
+}

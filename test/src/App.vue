@@ -6,6 +6,7 @@ import { default as DansInput } from '../../src/components/Input.vue';
 import Plot from '../../src/components/Plot.vue';
 import Radio from '../../src/components/Radio.vue';
 import Search from '../../src/components/Search.vue';
+import utils from '../../src/utils.js';
 
 import '../../src/dans.css';
 
@@ -37,6 +38,11 @@ import '../../src/dans.css';
     <Search label="Eye Color" :options="searchOptions" />
     <input type="submit" value="submit">
   </form>
+  <div class="col spaced">
+    <div class="row">
+      <button @click="toast('Hello, the time is ' + (new Date()).toISOString())">hello</button>
+    </div>
+  </div>
   <Plot
     :width="plotWidth"
     :height="400"
@@ -170,6 +176,7 @@ export default {
       sin: '',
       phoneNumber: 0,
       flavor: null,
+      toast: utils.toast,
     };
   },
   computed: {
