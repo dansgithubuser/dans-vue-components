@@ -13,31 +13,38 @@ import '../../src/dans.css';
 </script>
 
 <template>
-  <form class="spaced">
-    <DansInput
-      v-model="sin"
-      label="SIN"
-      @keyup.enter="alert(sin)"
-    />
-    <DansInput
-      v-model="phoneNumber"
-      type="number"
-      label="phone number"
-      @keyup.enter="alert(phoneNumber)"
-    />
-    <Radio
-      v-model="flavor"
-      :options="[
-        { name: 'French Vanilla', value: 'vanilla' },
-        { name: 'Chocolate Supreme', value: 'chocolate' },
-        { name: 'Fruit Party', value: 'strawberry' },
-        { name: 'Other', value: null },
-      ]"
-    />
-    <p>selected flavor is: {{ flavor }}</p>
-    <Search label="Eye Color" :options="searchOptions" />
-    <input type="submit" value="submit">
-  </form>
+  <div class="row">
+    <form class="spaced">
+      <DansInput
+        v-model="sin"
+        label="SIN"
+        @keyup.enter="alert(sin)"
+      />
+      <DansInput
+        v-model="phoneNumber"
+        type="number"
+        label="phone number"
+        @keyup.enter="alert(phoneNumber)"
+      />
+      <Radio
+        v-model="flavor"
+        :options="[
+          { name: 'French Vanilla', value: 'vanilla' },
+          { name: 'Chocolate Supreme', value: 'chocolate' },
+          { name: 'Fruit Party', value: 'strawberry' },
+          { name: 'Other', value: null },
+        ]"
+      />
+      <p>selected flavor is: {{ flavor }}</p>
+      <Search label="Eye Color" :options="searchOptions" />
+      <input type="submit" value="submit">
+    </form>
+    <div class="row-end spaced">
+      <div class="col">
+        <button>?</button>
+      </div>
+    </div>
+  </div>
   <div class="col spaced">
     <div class="row">
       <button @click="toast('Hello, the time is ' + (new Date()).toISOString())">hello</button>
