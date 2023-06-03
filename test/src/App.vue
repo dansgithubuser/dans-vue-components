@@ -4,6 +4,7 @@ import ClickShow from '../../src/components/ClickShow.vue';
 import Collapse from '../../src/components/Collapse.vue';
 import { default as DansInput } from '../../src/components/Input.vue';
 import Plot from '../../src/components/Plot.vue';
+import Modal from '../../src/components/Modal.vue';
 import Radio from '../../src/components/Radio.vue';
 import Search from '../../src/components/Search.vue';
 import utils from '../../src/utils.js';
@@ -41,7 +42,13 @@ import '../../src/dans.css';
     </form>
     <div class="row-end spaced">
       <div class="col">
-        <button>?</button>
+        <Modal button-text="?" class="m1">
+          <p style="font-size: 500px; margin: 0">👻</p>
+        </Modal>
+        <Modal button-text="??" class="row m1">
+          <p style="font-size: 800px; margin: 0">👻</p>
+          <p style="font-size: 700px; margin: 0">👻<br>👻</p>
+        </Modal>
       </div>
     </div>
   </div>

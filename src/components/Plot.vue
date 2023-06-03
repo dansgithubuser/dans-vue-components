@@ -1,7 +1,7 @@
 <template>
   <canvas
     ref="canvas"
-    tabindex="1"
+    tabindex="-1"
     class="dans-plot"
     :style="{
       width: `${width}px`,
