@@ -28,6 +28,7 @@ export default {
     }
     const div = document.createElement('div');
     div.classList.add('dans-toast');
+    div.classList.add('bordered');
     if (options.tone) {
       div.classList.add(`dans-toast-${options.tone}`);
     }

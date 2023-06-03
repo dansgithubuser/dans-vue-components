@@ -4,6 +4,7 @@ import ClickShow from '../../src/components/ClickShow.vue';
 import Collapse from '../../src/components/Collapse.vue';
 import { default as DansInput } from '../../src/components/Input.vue';
 import Plot from '../../src/components/Plot.vue';
+import Modal from '../../src/components/Modal.vue';
 import Radio from '../../src/components/Radio.vue';
 import Search from '../../src/components/Search.vue';
 import utils from '../../src/utils.js';
@@ -13,31 +14,44 @@ import '../../src/dans.css';
 </script>
 
 <template>
-  <form class="spaced">
-    <DansInput
-      v-model="sin"
-      label="SIN"
-      @keyup.enter="alert(sin)"
-    />
-    <DansInput
-      v-model="phoneNumber"
-      type="number"
-      label="phone number"
-      @keyup.enter="alert(phoneNumber)"
-    />
-    <Radio
-      v-model="flavor"
-      :options="[
-        { name: 'French Vanilla', value: 'vanilla' },
-        { name: 'Chocolate Supreme', value: 'chocolate' },
-        { name: 'Fruit Party', value: 'strawberry' },
-        { name: 'Other', value: null },
-      ]"
-    />
-    <p>selected flavor is: {{ flavor }}</p>
-    <Search label="Eye Color" :options="searchOptions" />
-    <input type="submit" value="submit">
-  </form>
+  <div class="row">
+    <form class="spaced">
+      <DansInput
+        v-model="sin"
+        label="SIN"
+        @keyup.enter="alert(sin)"
+      />
+      <DansInput
+        v-model="phoneNumber"
+        type="number"
+        label="phone number"
+        @keyup.enter="alert(phoneNumber)"
+      />
+      <Radio
+        v-model="flavor"
+        :options="[
+          { name: 'French Vanilla', value: 'vanilla' },
+          { name: 'Chocolate Supreme', value: 'chocolate' },
+          { name: 'Fruit Party', value: 'strawberry' },
+          { name: 'Other', value: null },
+        ]"
+      />
+      <p>selected flavor is: {{ flavor }}</p>
+      <Search label="Eye Color" :options="searchOptions" />
+      <input type="submit" value="submit">
+    </form>
+    <div class="row-end spaced">
+      <div class="col">
+        <Modal button-text="?" class="m1">
+          <p style="font-size: 500px; margin: 0">👻</p>
+        </Modal>
+        <Modal button-text="??" class="row m1">
+          <p style="font-size: 800px; margin: 0">👻</p>
+          <p style="font-size: 700px; margin: 0">👻<br>👻</p>
+        </Modal>
+      </div>
+    </div>
+  </div>
   <div class="col spaced">
     <div class="row">
       <button @click="toast('Hello, the time is ' + (new Date()).toISOString())">hello</button>
