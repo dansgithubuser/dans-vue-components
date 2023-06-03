@@ -46,6 +46,10 @@ export default {
       e.preventDefault();
       this.$refs.background.scrollBy(e.deltaX, e.deltaY);
     },
+    esc(e) {
+      if (e.key !== 'Escape') return;
+      this.toggle(false);
+    },
   },
   watch: {
     show() {
@@ -55,10 +59,18 @@ export default {
           this.scroll,
           { passive: false },
         );
+        document.addEventListener(
+          'keydown',
+          this.esc,
+        );
       } else {
         document.removeEventListener(
           'wheel',
           this.scroll,
+        );
+        document.removeEventListener(
+          'keydown',
+          this.esc,
         );
       }
     },
