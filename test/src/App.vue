@@ -7,6 +7,7 @@ import Plot from '../../src/components/Plot.vue';
 import Modal from '../../src/components/Modal.vue';
 import Radio from '../../src/components/Radio.vue';
 import Search from '../../src/components/Search.vue';
+import Select from '../../src/components/Select.vue';
 import utils from '../../src/utils.js';
 
 import '../../src/dans.css';
@@ -38,7 +39,22 @@ import '../../src/dans.css';
       />
       <p>selected flavor is: {{ flavor }}</p>
       <Search label="Eye Color" :options="searchOptions" />
-      <input type="submit" value="submit">
+      <div>
+        <Select
+          v-model="answer"
+          :options="[
+            { name: 'Yes.', value: 1 },
+            { name: 'No.', value: 2 },
+            { name: 'Maybe.', value: 3 },
+            { name: 'I don\'t know.', value: 4 },
+            { name: 'Can you repeat the question?', value: 5 },
+          ]"
+        />
+      </div>
+      <p>answer: {{ answer }}</p>
+      <div>
+        <input type="submit" value="submit">
+      </div>
     </form>
     <div class="row-end spaced">
       <div class="col">
@@ -190,6 +206,7 @@ export default {
       sin: '',
       phoneNumber: 0,
       flavor: null,
+      answer: null,
       toast: utils.toast,
     };
   },
