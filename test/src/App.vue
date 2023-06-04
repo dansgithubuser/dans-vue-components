@@ -19,17 +19,20 @@ import '../../src/dans.css';
     <form class="spaced">
       <DansInput
         v-model="sin"
+        name="sin"
         label="SIN"
         @keyup.enter="alert(sin)"
       />
       <DansInput
         v-model="phoneNumber"
+        name="phone_number"
         type="number"
         label="phone number"
         @keyup.enter="alert(phoneNumber)"
       />
       <Radio
         v-model="flavor"
+        name="flavor"
         :options="[
           { name: 'French Vanilla', value: 'vanilla' },
           { name: 'Chocolate Supreme', value: 'chocolate' },
@@ -38,10 +41,11 @@ import '../../src/dans.css';
         ]"
       />
       <p>selected flavor is: {{ flavor }}</p>
-      <Search label="Eye Color" :options="searchOptions" />
+      <Search label="Eye Color" name="eye_color" :options="searchOptions" />
       <div>
         <Select
           v-model="answer"
+          name="answer"
           :options="[
             { name: 'Yes.', value: 1 },
             { name: 'No.', value: 2 },

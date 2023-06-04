@@ -1,5 +1,6 @@
 <template>
   <div class="dans-radio">
+    <div v-if="label" class="dans-label">{{ label }}</div>
     <div v-for="option in options" :key="option.value">
       <input
         type="radio"
@@ -21,6 +22,7 @@ export default {
   name: 'Radio',
   props: {
     modelValue: {},
+    label: String,
     name: {
       default: self.crypto.randomUUID(),
     },

@@ -1,12 +1,13 @@
 <template>
   <div class="dans-search">
-    <div class="dans-label">{{ label }}</div>
+    <div v-if="label" class="dans-label">{{ label }}</div>
     <div>
       <input
         type="search"
         :list="uuid"
         :value="modelValue"
         @input="$emit('update:modelValue', $event.target.value)"
+        v-bind="$attrs"
       >
     </div>
     <datalist :id="uuid">
@@ -30,6 +31,7 @@ export default {
       uuid: self.crypto.randomUUID(),
     };
   },
+  inheritAttrs: false,
 }
 
 </script>

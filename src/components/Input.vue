@@ -1,6 +1,6 @@
 <template>
   <div class="dans-input">
-    <div class="dans-label">{{ label }}</div>
+    <div v-if="label" class="dans-label">{{ label }}</div>
     <div>
       <input
         :value="modelValue"
