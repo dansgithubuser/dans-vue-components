@@ -619,7 +619,13 @@ export default {
       default: true,
     },
   },
-  emits: ['keydown'],
+  emits: [
+    'keydown',
+    'mousemove',
+    'mousedown',
+    'mouseup',
+    'wheel',
+  ],
   watch: {
     entries() {
       this.update();
@@ -630,9 +636,11 @@ export default {
     const canvas = this.$refs.canvas;
     canvas.addEventListener('mousedown', (event) => {
       if (event.button === 0) f.drag = { x: event.x, y: event.y };
+      this.emitWithXY('mousedown', { button: event.button });
     });
     canvas.addEventListener('mouseup', (event) => {
       if (event.button === 0) f.drag = null;
+      this.emitWithXY('mouseup', { button: event.button });
     });
     canvas.addEventListener('mousemove', (event) => {
       f.mouse = event;
@@ -643,6 +651,10 @@ export default {
         );
         f.drag = { x: event.x, y: event.y };
       }
+      this.emitWithXY('mousemove', {
+        clientX: event.clientX,
+        clientY: event.clientY,
+      });
     });
     canvas.addEventListener('wheel', (event) => {
       if (this.mouseZoomExplicit && canvas !== document.activeElement) {
@@ -654,6 +666,7 @@ export default {
         2 ** ((event.deltaY > 0 ? 1 : -1) / 2),
       );
       event.preventDefault();
+      this.emitWithXY('wheel', { deltaY: event.deltaY });
     });
     canvas.addEventListener('keydown', (event) => {
       switch (event.key) {
@@ -663,11 +676,7 @@ export default {
         case 'w': f.plot.zoomBy(1, 1.25); break;
         case 's': f.plot.zoomBy(1, 0.80); break;
         default:
-          this.$emit('keydown', {
-            key: event.key,
-            x: +((f.mouse.x - canvas.offsetLeft) / canvas.width  - 0.5) * 2 / f.plot.zoom.x + f.plot.origin.x,
-            y: -((f.mouse.y - canvas.offsetTop ) / canvas.height - 0.5) * 2 / f.plot.zoom.y + f.plot.origin.y,
-          });
+          this.emitWithXY('keydown', { key: event.key });
           break;
       }
     });
@@ -694,6 +703,14 @@ export default {
       }
       plot.center();
       f.plot = plot;
+    },
+    emitWithXY(type, args = {}) {
+      const canvas = this.$refs.canvas;
+      this.$emit(type, {
+        ...args,
+        plotX: +((f.mouse.x - canvas.offsetLeft) / canvas.width  - 0.5) * 2 / f.plot.zoom.x + f.plot.origin.x,
+        plotY: -((f.mouse.y - canvas.offsetTop ) / canvas.height - 0.5) * 2 / f.plot.zoom.y + f.plot.origin.y,
+      });
     },
   },
 };
