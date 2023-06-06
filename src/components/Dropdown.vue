@@ -17,7 +17,7 @@
 <script>
 
 export default {
-  name: 'Select',
+  name: 'Dropdown',
   props: {
     modelValue: {},
     label: String,

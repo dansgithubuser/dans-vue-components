@@ -1,5 +1,5 @@
 <template>
-  <div class="dans-input">
+  <div class="dans-intake">
     <div v-if="label" class="dans-label">{{ label }}</div>
     <div>
       <input
@@ -14,7 +14,7 @@
 <script>
 
 export default {
-  name: 'Input',
+  name: 'Intake',
   props: {
     modelValue: {},
     label: String,

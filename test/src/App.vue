@@ -2,12 +2,12 @@
 
 import ClickShow from '../../src/components/ClickShow.vue';
 import Collapse from '../../src/components/Collapse.vue';
-import { default as DansInput } from '../../src/components/Input.vue';
+import { default as DansInput } from '../../src/components/Intake.vue';
 import Plot from '../../src/components/Plot.vue';
 import Modal from '../../src/components/Modal.vue';
 import Radio from '../../src/components/Radio.vue';
 import Search from '../../src/components/Search.vue';
-import Select from '../../src/components/Select.vue';
+import Dropdown from '../../src/components/Dropdown.vue';
 import utils from '../../src/utils.js';
 
 import '../../src/dans.css';
@@ -43,7 +43,7 @@ import '../../src/dans.css';
       <p>selected flavor is: {{ flavor }}</p>
       <Search label="Eye Color" name="eye_color" :options="searchOptions" />
       <div>
-        <Select
+        <Dropdown
           v-model="answer"
           name="answer"
           :options="[
