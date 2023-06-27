@@ -1,5 +1,6 @@
 <script setup>
 
+import Checkbox from '../../src/components/Checkbox.vue';
 import ClickShow from '../../src/components/ClickShow.vue';
 import Collapse from '../../src/components/Collapse.vue';
 import { default as DansInput } from '../../src/components/Intake.vue';
@@ -62,7 +63,7 @@ import '../../src/dans.css';
       </div>
     </form>
     <div class="row-end spaced">
-      <div class="col">
+      <div class="col spaced">
         <Modal button-text="?" container-class="m1">
           <p style="font-size: 500px; margin: 0">👻</p>
         </Modal>
@@ -72,6 +73,10 @@ import '../../src/dans.css';
             <p style="font-size: 700px; margin: 0">👻<br>👻</p>
           </div>
         </Modal>
+        <div>
+          <Checkbox v-model="ok" label="OK" />
+          <div :style="{ visibility: ok ? 'visible' : 'hidden' }">OK</div>
+        </div>
       </div>
     </div>
   </div>
@@ -214,6 +219,7 @@ export default {
       phoneNumber: 0,
       flavor: null,
       answer: null,
+      ok: false,
       toast: utils.toast,
     };
   },
