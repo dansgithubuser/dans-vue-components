@@ -4,7 +4,7 @@
     <input
       type="checkbox"
       :id="_id"
-      :value="modelValue"
+      :checked="modelValue"
       @change="$emit('update:modelValue', $event.target.checked)"
     >
   </div>
@@ -15,7 +15,7 @@
 export default {
   name: 'Checkbox',
   props: {
-    modelValue: {},
+    modelValue: Boolean,
     label: String,
     id: {},
   },
