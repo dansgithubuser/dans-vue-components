@@ -11,10 +11,7 @@
         ref="background"
         @click.stop
       >
-        <div
-          class="dans-modal-content"
-          v-bind="$attrs"
-        >
+        <div :class="containerClass">
           <slot></slot>
         </div>
       </div>
@@ -28,6 +25,7 @@ export default {
   name: 'Modal',
   props: {
     buttonText: String,
+    containerClass: 'dans-modal-container-default',
   },
   data() {
     return {
@@ -75,7 +73,6 @@ export default {
       }
     },
   },
-  inheritAttrs: false,
 }
 
 </script>

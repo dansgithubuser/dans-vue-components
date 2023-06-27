@@ -62,12 +62,14 @@ import '../../src/dans.css';
     </form>
     <div class="row-end spaced">
       <div class="col">
-        <Modal button-text="?" class="m1">
+        <Modal button-text="?" container-class="m1">
           <p style="font-size: 500px; margin: 0">👻</p>
         </Modal>
-        <Modal button-text="??" class="row m1">
-          <p style="font-size: 800px; margin: 0">👻</p>
-          <p style="font-size: 700px; margin: 0">👻<br>👻</p>
+        <Modal button-text="??">
+          <div class="row m1">
+            <p style="font-size: 800px; margin: 0">👻</p>
+            <p style="font-size: 700px; margin: 0">👻<br>👻</p>
+          </div>
         </Modal>
       </div>
     </div>
