@@ -1,15 +1,15 @@
 <template>
   <div class="dans-radio">
     <div v-if="label" class="dans-label">{{ label }}</div>
-    <div v-for="option in options" :key="option.value">
+    <div v-for="(option, index) in options" :key="option.value">
       <input
         type="radio"
-        :id="`${option.value}-${_name}`"
-        :name="_name"
+        :id="`${_id}--${index}`"
+        :name="name"
         :value="option.value"
         @input="$emit('update:modelValue', option.value)"
       >
-      <label :for="`${option.value}-${_name}`">
+      <label :for="`${_id}--${index}`">
         {{ option.name }}
       </label>
     </div>
@@ -25,11 +25,12 @@ export default {
     label: String,
     name,
     options: Array,
+    id: {},
   },
   emits: ['update:modelValue'],
   data() {
     return {
-      _name: this.name || self.crypto.randomUUID(),
+      _id: this.id || self.crypto.randomUUID(),
     };
   },
 }

@@ -45,6 +45,7 @@ import '../../src/dans.css';
       <div>
         <Dropdown
           v-model="answer"
+          label="answer"
           name="answer"
           :options="[
             { name: 'Yes.', value: 1 },

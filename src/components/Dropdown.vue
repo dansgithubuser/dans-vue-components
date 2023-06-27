@@ -1,7 +1,8 @@
 <template>
   <div class="dans-dropdown">
-    <div v-if="label" class="dans-label">{{ label }}</div>
+    <label v-if="label" class="dans-label" :for="_id">{{ label }}</label>
     <select
+      :id="_id"
       class="dans-dropdown"
       :value="modelValue"
       @input="$emit('update:modelValue', $event.target.value)"
@@ -22,9 +23,15 @@ export default {
     modelValue: {},
     label: String,
     options: Array,
+    id: {},
   },
   emits: ['update:modelValue'],
   inheritAttrs: false,
+  data() {
+    return {
+      _id: this.id || self.crypto.randomUUID(),
+    };
+  },
 }
 
 </script>
