@@ -1,8 +1,8 @@
 <template>
-  <div class="dans-select">
+  <div class="dans-dropdown">
     <div v-if="label" class="dans-label">{{ label }}</div>
     <select
-      class="dans-select"
+      class="dans-dropdown"
       :value="modelValue"
       @input="$emit('update:modelValue', $event.target.value)"
       v-bind="$attrs"
