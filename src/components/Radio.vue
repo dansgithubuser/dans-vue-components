@@ -4,12 +4,12 @@
     <div v-for="option in options" :key="option.value">
       <input
         type="radio"
-        :id="`${option.value}-${name}`"
-        :name="name"
+        :id="`${option.value}-${_name}`"
+        :name="_name"
         :value="option.value"
         @input="$emit('update:modelValue', option.value)"
       >
-      <label :for="`${option.value}-${name}`">
+      <label :for="`${option.value}-${_name}`">
         {{ option.name }}
       </label>
     </div>
@@ -23,12 +23,15 @@ export default {
   props: {
     modelValue: {},
     label: String,
-    name: {
-      default: self.crypto.randomUUID(),
-    },
+    name,
     options: Array,
   },
   emits: ['update:modelValue'],
+  data() {
+    return {
+      _name: this.name || self.crypto.randomUUID(),
+    };
+  },
 }
 
 </script>

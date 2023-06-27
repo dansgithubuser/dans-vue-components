@@ -1,13 +1,12 @@
 <template>
   <div class="dans-intake">
-    <div v-if="label" class="dans-label">{{ label }}</div>
-    <div>
-      <input
-        :value="modelValue"
-        @input="$emit('update:modelValue', $event.target.value)"
-        v-bind="$attrs"
-      >
-    </div>
+    <label v-if="label" class="dans-label" :for="_name">{{ label }}</label>
+    <input
+      :id="_name"
+      :value="modelValue"
+      @input="$emit('update:modelValue', $event.target.value)"
+      v-bind="$attrs"
+    >
   </div>
 </template>
 
@@ -18,9 +17,15 @@ export default {
   props: {
     modelValue: {},
     label: String,
+    name,
   },
   emits: ['update:modelValue'],
   inheritAttrs: false,
+  data() {
+    return {
+      _name: this.name || self.crypto.randomUUID(),
+    };
+  },
 }
 
 </script>
