@@ -1,9 +1,9 @@
 <template>
   <div class="dans-checkbox">
-    <label v-if="label" class="dans-label" :for="_id">{{ label }}</label>
+    <label v-if="label" class="dans-label" :for="d_id">{{ label }}</label>
     <input
       type="checkbox"
-      :id="_id"
+      :id="d_id"
       :checked="modelValue"
       @change="$emit('update:modelValue', $event.target.checked)"
     >
@@ -22,7 +22,7 @@ export default {
   emits: ['update:modelValue'],
   data() {
     return {
-      _id: this.id || self.crypto.randomUUID(),
+      d_id: this.id || self.crypto.randomUUID(),
     };
   },
 }

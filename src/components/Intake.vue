@@ -1,8 +1,8 @@
 <template>
   <div class="dans-intake">
-    <label v-if="label" class="dans-label" :for="_id">{{ label }}</label>
+    <label v-if="label" class="dans-label" :for="d_id">{{ label }}</label>
     <input
-      :id="_id"
+      :id="d_id"
       :value="modelValue"
       @input="$emit('update:modelValue', $event.target.value)"
       v-bind="$attrs"
@@ -23,7 +23,7 @@ export default {
   inheritAttrs: false,
   data() {
     return {
-      _id: this.id || self.crypto.randomUUID(),
+      d_id: this.id || self.crypto.randomUUID(),
     };
   },
 }

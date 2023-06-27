@@ -4,12 +4,12 @@
     <div v-for="(option, index) in options" :key="option.value">
       <input
         type="radio"
-        :id="`${_id}--${index}`"
+        :id="`${d_id}--${index}`"
         :name="name"
         :value="option.value"
         @input="$emit('update:modelValue', option.value)"
       >
-      <label :for="`${_id}--${index}`">
+      <label :for="`${d_id}--${index}`">
         {{ option.name }}
       </label>
     </div>
@@ -30,7 +30,7 @@ export default {
   emits: ['update:modelValue'],
   data() {
     return {
-      _id: this.id || self.crypto.randomUUID(),
+      d_id: this.id || self.crypto.randomUUID(),
     };
   },
 }

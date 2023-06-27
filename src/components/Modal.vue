@@ -25,7 +25,9 @@ export default {
   name: 'Modal',
   props: {
     buttonText: String,
-    containerClass: 'dans-modal-container-default',
+    containerClass: {
+      default: 'dans-modal-container-default',
+    },
   },
   data() {
     return {

@@ -1,9 +1,9 @@
 <template>
   <div class="dans-search">
-    <label v-if="label" class="dans-label" :for="_id">{{ label }}</label>
+    <label v-if="label" class="dans-label" :for="d_id">{{ label }}</label>
     <div>
       <input
-        :id="_id"
+        :id="d_id"
         type="search"
         :list="listId"
         :value="modelValue"
@@ -31,7 +31,7 @@ export default {
   data() {
     return {
       listId: self.crypto.randomUUID(),
-      _id: this.id || self.crypto.randomUUID(),
+      d_id: this.id || self.crypto.randomUUID(),
     };
   },
   inheritAttrs: false,
