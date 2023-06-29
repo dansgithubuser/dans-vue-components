@@ -8,8 +8,8 @@
       @input="$emit('update:modelValue', $event.target.value)"
       v-bind="$attrs"
     >
-      <option v-for="option in options" :value="option.value">
-        {{ option.name }}
+      <option v-for="option in options" :value="optionValue(option)">
+        {{ optionName(option) }}
       </option>
     </select>
   </div>
@@ -31,6 +31,16 @@ export default {
     return {
       d_id: this.id || self.crypto.randomUUID(),
     };
+  },
+  methods: {
+    optionName(option) {
+      if (option?.name) return option.name;
+      return option;
+    },
+    optionValue(option) {
+      if (option?.value) return option.value;
+      return option;
+    },
   },
 }
 
