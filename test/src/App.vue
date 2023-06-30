@@ -19,18 +19,22 @@ import '../../src/dans.css';
 <template>
   <div class="row">
     <form class="spaced">
-      <DansInput
-        v-model="sin"
-        name="sin"
-        label="SIN"
-        @keyup.enter="alert(sin)"
-      />
+      <div class="row spaced-h" style="align-items: flex-end">
+        <DansInput
+          v-model="sin"
+          name="sin"
+          label="SIN"
+          :delay="1"
+        />
+        <div v-if="sin">
+          SIN is {{ sin }}
+        </div>
+      </div>
       <DansInput
         v-model="phoneNumber"
         name="phone_number"
         type="number"
         label="phone number"
-        @keyup.enter="alert(phoneNumber)"
       />
       <Radio
         v-model="flavor"
