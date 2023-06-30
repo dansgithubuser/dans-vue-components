@@ -12,6 +12,7 @@ import sys
 parser = argparse.ArgumentParser()
 parser.add_argument('--install', '-i', action='store_true')
 parser.add_argument('--run', '-r', action='store_true')
+parser.add_argument('--lint', '-l', action='store_true')
 args = parser.parse_args()
 
 #===== consts =====#
@@ -79,3 +80,6 @@ if args.install:
 
 if args.run:
     invoke('npm run dev')
+
+if args.lint:
+    invoke('npm run lint')
