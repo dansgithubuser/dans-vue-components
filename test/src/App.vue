@@ -25,6 +25,7 @@ import '../../src/dans.css';
           :pause="pause"
           name="sin"
           label="SIN"
+          @keydown.stop
         />
         <div v-if="sin">
           SIN is {{ sin }}
@@ -56,6 +57,7 @@ import '../../src/dans.css';
           label="Eye Color"
           name="eye_color"
           :options="searchOptions"
+          @keydown.stop
         />
         <div v-if="eyeColor">
           eye color is {{ eyeColor }}
