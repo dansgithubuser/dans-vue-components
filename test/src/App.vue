@@ -3,6 +3,7 @@
 import Checkbox from '../../src/components/Checkbox.vue';
 import ClickShow from '../../src/components/ClickShow.vue';
 import Collapse from '../../src/components/Collapse.vue';
+import Hover from '../../src/components/Hover.vue';
 import { default as DansInput } from '../../src/components/Intake.vue';
 import Plot from '../../src/components/Plot.vue';
 import Modal from '../../src/components/Modal.vue';
@@ -90,7 +91,11 @@ import '../../src/dans.css';
     :height="400"
     :entries="plotEntries"
     @keydown="alert($event.key)"
+    @mousemove="plotHoverUpdate($event)"
   />
+  <Hover v-if="plotHover.show" :left="plotHover.left" :top="plotHover.top">
+    {{ plotHover.text }}
+  </Hover>
   <Collapse label="Secret Books" class="m1t" kb-key="b">
     <Collapse label="Necronomicon" kb-key="n">
       Klaatu Verata Niktu
@@ -219,6 +224,13 @@ export default {
       phoneNumber: 0,
       flavor: null,
       answer: null,
+      plotHover: {
+        show: false,
+        top: 0,
+        left: 0,
+        text: '',
+        timeout: null,
+      },
       ok: false,
       toast: utils.toast,
     };
@@ -263,6 +275,19 @@ export default {
   methods: {
     alert(msg) {
       alert(msg);
+    },
+    plotHoverUpdate(event) {
+      this.plotHover.left = `${event.clientX}px`;
+      this.plotHover.top = `calc(${event.clientY}px + 1rem)`;
+      this.plotHover.show = true;
+      this.plotHover.text = `${event.plotX} ${event.plotY}`;
+      clearTimeout(this.plotHover.timeout);
+      this.plotHover.timeout = setTimeout(
+        () => {
+          this.plotHover.show = false;
+        },
+        1000,
+      );
     },
   },
 };
