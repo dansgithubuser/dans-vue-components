@@ -47,7 +47,18 @@ import '../../src/dans.css';
         ]"
       />
       <p>selected flavor is: {{ flavor }}</p>
-      <Search label="Eye Color" name="eye_color" :options="searchOptions" />
+      <div class="row spaced-h" style="align-items: flex-end">
+        <Search
+          v-model="eyeColor"
+          label="Eye Color"
+          name="eye_color"
+          :options="searchOptions"
+          :delay="1"
+        />
+        <div v-if="eyeColor">
+          eye color is {{ eyeColor }}
+        </div>
+      </div>
       <div>
         <Dropdown
           v-model="answer"
@@ -227,6 +238,7 @@ export default {
       sin: '',
       phoneNumber: 0,
       flavor: null,
+      eyeColor: null,
       answer: null,
       plotHover: {
         show: false,
