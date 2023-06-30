@@ -6,7 +6,8 @@
         :id="d_id"
         type="search"
         :list="listId"
-        v-model="innerValue"
+        :value="modelValue"
+        @change="$emit('update:modelValue', $event.target.value)"
         v-bind="$attrs"
       >
     </div>
@@ -24,40 +25,16 @@ export default {
     modelValue: {},
     label: String,
     options: Array,
-    delay: {
-      type: Number,
-      default: 0,
-    },
     id: {},
   },
   emits: ['update:modelValue'],
-  inheritAttrs: false,
   data() {
     return {
-      innerValue: this.modelValue,
-      timeout: null,
       listId: self.crypto.randomUUID(),
       d_id: this.id || self.crypto.randomUUID(),
     };
   },
-  watch: {
-    innerValue() {
-      if (!this.delay) {
-        this.emit();
-      } else {
-        clearTimeout(this.timeout);
-        this.timeout = setTimeout(
-          () => this.emit(),
-          1000 * this.delay,
-        );
-      }
-    },
-  },
-  methods: {
-    emit() {
-      this.$emit('update:modelValue', this.innerValue);
-    },
-  },
+  inheritAttrs: false,
 }
 
 </script>
