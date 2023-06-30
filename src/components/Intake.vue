@@ -4,7 +4,7 @@
     <input
       :id="d_id"
       :value="modelValue"
-      @change="$emit('update:modelValue', $event.target.value)"
+      @change="pause ? pauseValue = $event.target.value : $emit('update:modelValue', $event.target.value)"
       v-bind="$attrs"
     >
   </div>
@@ -17,14 +17,28 @@ export default {
   props: {
     modelValue: {},
     label: String,
+    pause: {
+      type: Boolean,
+      default: false,
+    },
     id: {},
   },
   emits: ['update:modelValue'],
   inheritAttrs: false,
   data() {
     return {
+      pauseValue: null,
       d_id: this.id || self.crypto.randomUUID(),
     };
+  },
+  watch: {
+    pause() {
+      if (this.pause) {
+        this.pauseValue = this.modelValue;
+      } else {
+        this.$emit('update:modelValue', this.pauseValue);
+      }
+    },
   },
 }
 

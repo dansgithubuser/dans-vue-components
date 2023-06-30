@@ -5,7 +5,7 @@
       :id="d_id"
       class="dans-dropdown"
       :value="modelValue"
-      @input="$emit('update:modelValue', $event.target.value)"
+      @input="pause ? pauseValue = $event.target.value : $emit('update:modelValue', $event.target.value)"
       v-bind="$attrs"
     >
       <option v-for="option in options" :value="optionValue(option)">
@@ -23,6 +23,10 @@ export default {
     modelValue: {},
     label: String,
     options: Array,
+    pause: {
+      type: Boolean,
+      default: false,
+    },
     id: {},
   },
   emits: ['update:modelValue'],
@@ -40,6 +44,15 @@ export default {
     optionValue(option) {
       if (option?.value) return option.value;
       return option;
+    },
+  },
+  watch: {
+    pause() {
+      if (this.pause) {
+        this.pauseValue = this.modelValue;
+      } else {
+        this.$emit('update:modelValue', this.pauseValue);
+      }
     },
   },
 }

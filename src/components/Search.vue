@@ -7,7 +7,7 @@
         type="search"
         :list="listId"
         :value="modelValue"
-        @change="$emit('update:modelValue', $event.target.value)"
+        @change="pause ? pauseValue = $event.target.value : $emit('update:modelValue', $event.target.value)"
         v-bind="$attrs"
       >
     </div>
@@ -25,6 +25,10 @@ export default {
     modelValue: {},
     label: String,
     options: Array,
+    pause: {
+      type: Boolean,
+      default: false,
+    },
     id: {},
   },
   emits: ['update:modelValue'],
@@ -35,6 +39,15 @@ export default {
     };
   },
   inheritAttrs: false,
+  watch: {
+    pause() {
+      if (this.pause) {
+        this.pauseValue = this.modelValue;
+      } else {
+        this.$emit('update:modelValue', this.pauseValue);
+      }
+    },
+  },
 }
 
 </script>

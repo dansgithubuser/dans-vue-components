@@ -22,6 +22,7 @@ import '../../src/dans.css';
       <div class="row spaced-h" style="align-items: flex-end">
         <DansInput
           v-model="sin"
+          :pause="pause"
           name="sin"
           label="SIN"
         />
@@ -31,12 +32,14 @@ import '../../src/dans.css';
       </div>
       <DansInput
         v-model="phoneNumber"
+        :pause="pause"
         name="phone_number"
         type="number"
         label="phone number"
       />
       <Radio
         v-model="flavor"
+        :pause="pause"
         name="flavor"
         :options="[
           { name: 'French Vanilla', value: 'vanilla' },
@@ -49,6 +52,7 @@ import '../../src/dans.css';
       <div class="row spaced-h" style="align-items: flex-end">
         <Search
           v-model="eyeColor"
+          :pause="pause"
           label="Eye Color"
           name="eye_color"
           :options="searchOptions"
@@ -60,6 +64,7 @@ import '../../src/dans.css';
       <div>
         <Dropdown
           v-model="answer"
+          :pause="pause"
           label="answer"
           name="answer"
           :options="[
@@ -72,10 +77,23 @@ import '../../src/dans.css';
         />
       </div>
       <p>answer: {{ answer }}</p>
+      <div class="row spaced-h" style="align-items: flex-end">
+        <Checkbox
+          v-model="check"
+          :pause="pause"
+          label="check"
+        />
+        <div v-if="check">
+          check
+        </div>
+      </div>
       <div>
         <input type="submit" value="submit">
       </div>
     </form>
+    <div>
+      {{ summary }}
+    </div>
     <div class="row-end spaced">
       <div class="col spaced">
         <Modal button-text="?" container-class="m1">
@@ -88,8 +106,8 @@ import '../../src/dans.css';
           </div>
         </Modal>
         <div>
-          <Checkbox v-model="ok" label="OK" />
-          <div :style="{ visibility: ok ? 'visible' : 'hidden' }">OK</div>
+          <Checkbox v-model="pause" label="pause" />
+          <div :style="{ visibility: pause ? 'visible' : 'hidden' }">paused</div>
         </div>
       </div>
     </div>
@@ -238,6 +256,7 @@ export default {
       flavor: null,
       eyeColor: null,
       answer: null,
+      check: false,
       plotHover: {
         show: false,
         top: 0,
@@ -245,11 +264,16 @@ export default {
         text: '',
         timeout: null,
       },
-      ok: false,
+      pause: false,
       toast: utils.toast,
     };
   },
   computed: {
+    summary() {
+      const summary = `SIN: ${this.sin}\nphone: ${this.phoneNumber}\nflavor: ${this.flavor}\neye color: ${this.eyeColor}\nanswer:${this.answer}\ncheck: ${this.check}`;
+      console.log(`--- SUMMARY ---\n${summary}`);
+      return summary;
+    },
     plotWidth() {
       return window.innerWidth - 16;
     },

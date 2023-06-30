@@ -5,7 +5,7 @@
       type="checkbox"
       :id="d_id"
       :checked="modelValue"
-      @change="$emit('update:modelValue', $event.target.checked)"
+      @change="pause ? pauseValue = $event.target.checked : $emit('update:modelValue', $event.target.checked)"
     >
   </div>
 </template>
@@ -17,6 +17,10 @@ export default {
   props: {
     modelValue: Boolean,
     label: String,
+    pause: {
+      type: Boolean,
+      default: false,
+    },
     id: {},
   },
   emits: ['update:modelValue'],
@@ -24,6 +28,15 @@ export default {
     return {
       d_id: this.id || self.crypto.randomUUID(),
     };
+  },
+  watch: {
+    pause() {
+      if (this.pause) {
+        this.pauseValue = this.modelValue;
+      } else {
+        this.$emit('update:modelValue', this.pauseValue);
+      }
+    },
   },
 }
 

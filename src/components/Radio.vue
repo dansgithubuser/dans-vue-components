@@ -7,7 +7,7 @@
         :id="`${d_id}--${index}`"
         :name="name"
         :value="option.value"
-        @input="$emit('update:modelValue', option.value)"
+        @input="pause ? pauseValue = option.value : $emit('update:modelValue', option.value)"
       >
       <label :for="`${d_id}--${index}`">
         {{ option.name }}
@@ -25,6 +25,10 @@ export default {
     label: String,
     name,
     options: Array,
+    pause: {
+      type: Boolean,
+      default: false,
+    },
     id: {},
   },
   emits: ['update:modelValue'],
@@ -32,6 +36,15 @@ export default {
     return {
       d_id: this.id || self.crypto.randomUUID(),
     };
+  },
+  watch: {
+    pause() {
+      if (this.pause) {
+        this.pauseValue = this.modelValue;
+      } else {
+        this.$emit('update:modelValue', this.pauseValue);
+      }
+    },
   },
 }
 
