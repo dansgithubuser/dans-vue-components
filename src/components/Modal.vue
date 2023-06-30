@@ -37,12 +37,9 @@ export default {
   },
   methods: {
     toggle(show) {
-      if (show === undefined) {
-        this.show = !this.show;
-      } else {
-        this.show = show;
-      }
-      this.$emit('toggle', this.show);
+      const show_ = show === undefined ? !this.show : show;
+      this.$emit('toggle', show_);
+      this.$nextTick(() => this.show = show_);
     },
     scroll(e) {
       e.preventDefault();

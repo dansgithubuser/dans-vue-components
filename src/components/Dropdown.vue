@@ -33,6 +33,7 @@ export default {
   inheritAttrs: false,
   data() {
     return {
+      pauseValue: this.modelValue,
       d_id: this.id || self.crypto.randomUUID(),
     };
   },

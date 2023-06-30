@@ -34,6 +34,7 @@ export default {
   emits: ['update:modelValue'],
   data() {
     return {
+      pauseValue: this.modelValue,
       d_id: this.id || self.crypto.randomUUID(),
     };
   },

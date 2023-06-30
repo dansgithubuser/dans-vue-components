@@ -680,11 +680,11 @@ export default {
           break;
       }
     });
-    canvas.addEventListener('focus', (event) => {
+    canvas.addEventListener('focus', () => {
       f.plot.focused = true;
       f.plot.draw();
     });
-    canvas.addEventListener('blur', (event) => {
+    canvas.addEventListener('blur', () => {
       f.plot.focused = false;
       f.plot.draw();
     });
