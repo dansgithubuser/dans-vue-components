@@ -29,6 +29,7 @@ export default {
       default: 'dans-modal-container-default',
     },
   },
+  emits: ['toggle'],
   data() {
     return {
       show: false,
@@ -41,6 +42,7 @@ export default {
       } else {
         this.show = show;
       }
+      this.$emit('toggle', this.show);
     },
     scroll(e) {
       e.preventDefault();

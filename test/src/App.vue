@@ -98,7 +98,7 @@ import '../../src/dans.css';
     </div>
     <div class="row-end spaced">
       <div class="col spaced">
-        <Modal button-text="?" container-class="m1">
+        <Modal button-text="?" container-class="m1" @toggle="$event && toast('Boo!')">
           <p style="font-size: 500px; margin: 0">👻</p>
         </Modal>
         <Modal button-text="??">
