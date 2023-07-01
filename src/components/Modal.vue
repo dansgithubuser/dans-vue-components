@@ -1,9 +1,9 @@
 <template>
   <div class="dans-modal">
-    <button @click="toggle()">{{ buttonText }}</button>
+    <button v-if="buttonText" @click="toggle()">{{ buttonText }}</button>
     <div
       class="dans-modal-fixed"
-      v-if="show"
+      v-if="d_show"
       @click="toggle(false)"
     >
       <div
@@ -24,6 +24,7 @@
 export default {
   name: 'Modal',
   props: {
+    show: Boolean,
     buttonText: String,
     containerClass: {
       default: 'dans-modal-container-default',
@@ -32,14 +33,14 @@ export default {
   emits: ['toggle'],
   data() {
     return {
-      show: false,
+      d_show: false,
     };
   },
   methods: {
     toggle(show) {
       const show_ = show === undefined ? !this.show : show;
       this.$emit('toggle', show_);
-      this.$nextTick(() => this.show = show_);
+      this.$nextTick(() => this.d_show = show_);
     },
     scroll(e) {
       e.preventDefault();
@@ -52,7 +53,10 @@ export default {
   },
   watch: {
     show() {
-      if (this.show) {
+      this.d_show = this.show;
+    },
+    d_show() {
+      if (this.d_show) {
         document.addEventListener(
           'wheel',
           this.scroll,
