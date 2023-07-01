@@ -5,8 +5,6 @@
       position: 'fixed',
       left,
       top,
-      'background-color': backgroundColor,
-      padding,
     }"
   >
     <slot></slot>
@@ -20,15 +18,16 @@ export default {
   props: {
     left: String,
     top: String,
-    backgroundColor: {
-      type: String,
-      default: 'white',
-    },
-    padding: {
-      type: String,
-      default: '1rem',
-    },
   },
 }
 
 </script>
+
+<style>
+
+.dans-hover {
+  background-color: white;
+  padding: 1rem;
+}
+
+</style>
