@@ -706,11 +706,12 @@ export default {
       this.plot = plot;
     },
     emitWithXY(type, args = {}) {
-      const canvas = this.$refs.canvas;
+      const rect = this.mouse.target.getBoundingClientRect();
+      console.log(this.mouse.y, rect.top);
       this.$emit(type, {
         ...args,
-        plotX: +((this.mouse.x - canvas.offsetLeft) / canvas.width  - 0.5) * 2 / this.plot.zoom.x + this.plot.origin.x,
-        plotY: -((this.mouse.y - canvas.offsetTop ) / canvas.height - 0.5) * 2 / this.plot.zoom.y + this.plot.origin.y,
+        plotX: +((this.mouse.x - rect.left) / rect.width  - 0.5) * 2 / this.plot.zoom.x + this.plot.origin.x,
+        plotY: -((this.mouse.y - rect.top ) / rect.height - 0.5) * 2 / this.plot.zoom.y + this.plot.origin.y,
       });
     },
   },
