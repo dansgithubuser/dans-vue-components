@@ -594,12 +594,6 @@ class Texter {
   }
 }
 
-const f = { // file-scope vars
-  plot: null,
-  drag: null,
-  mouse: {},
-};
-
 export default {
   name: 'Plot',
   props: {
@@ -626,6 +620,13 @@ export default {
     'mouseup',
     'wheel',
   ],
+  data() {
+    return {
+      plot: null,
+      drag: null,
+      mouse: {},
+    };
+  },
   watch: {
     entries() {
       this.update();
@@ -635,21 +636,21 @@ export default {
     this.update();
     const canvas = this.$refs.canvas;
     canvas.addEventListener('mousedown', (event) => {
-      if (event.button === 0) f.drag = { x: event.x, y: event.y };
+      if (event.button === 0) this.drag = { x: event.x, y: event.y };
       this.emitWithXY('mousedown', { button: event.button });
     });
     canvas.addEventListener('mouseup', (event) => {
-      if (event.button === 0) f.drag = null;
+      if (event.button === 0) this.drag = null;
       this.emitWithXY('mouseup', { button: event.button });
     });
     canvas.addEventListener('mousemove', (event) => {
-      f.mouse = event;
-      if (f.drag) {
-        f.plot.move(
-          -(event.x - f.drag.x) / this.width * 2,
-          +(event.y - f.drag.y) / this.height * 2,
+      this.mouse = event;
+      if (this.drag) {
+        this.plot.move(
+          -(event.x - this.drag.x) / this.width * 2,
+          +(event.y - this.drag.y) / this.height * 2,
         );
-        f.drag = { x: event.x, y: event.y };
+        this.drag = { x: event.x, y: event.y };
       }
       this.emitWithXY('mousemove', {
         clientX: event.clientX,
@@ -660,7 +661,7 @@ export default {
       if (this.mouseZoomExplicit && canvas !== document.activeElement) {
         return;
       }
-      f.plot.zoomAt(
+      this.plot.zoomAt(
         +(event.x / document.body.clientWidth * 2 - 1),
         -(event.y / document.body.clientHeight * 2 - 1),
         2 ** ((event.deltaY > 0 ? 1 : -1) / 2),
@@ -670,30 +671,30 @@ export default {
     });
     canvas.addEventListener('keydown', (event) => {
       switch (event.key) {
-        case ' ': f.plot.center(); event.preventDefault(); break;
-        case 'a': f.plot.zoomBy(1.25, 1); break;
-        case 'd': f.plot.zoomBy(0.80, 1); break;
-        case 'w': f.plot.zoomBy(1, 1.25); break;
-        case 's': f.plot.zoomBy(1, 0.80); break;
+        case ' ': this.plot.center(); event.preventDefault(); break;
+        case 'a': this.plot.zoomBy(1.25, 1); break;
+        case 'd': this.plot.zoomBy(0.80, 1); break;
+        case 'w': this.plot.zoomBy(1, 1.25); break;
+        case 's': this.plot.zoomBy(1, 0.80); break;
         default:
           this.emitWithXY('keydown', { key: event.key });
           break;
       }
     });
     canvas.addEventListener('focus', () => {
-      f.plot.focused = true;
-      f.plot.draw();
+      this.plot.focused = true;
+      this.plot.draw();
     });
     canvas.addEventListener('blur', () => {
-      f.plot.focused = false;
-      f.plot.draw();
+      this.plot.focused = false;
+      this.plot.draw();
     });
   },
   methods: {
     update() {
-      if (f.plot) {
-        delete f.plot;
-        f.plot = null;
+      if (this.plot) {
+        delete this.plot;
+        this.plot = null;
       }
       const canvas = this.$refs.canvas;
       const gl = canvas.getContext('webgl', { antialias: false });
@@ -702,14 +703,14 @@ export default {
         plot.enter(entry);
       }
       plot.center();
-      f.plot = plot;
+      this.plot = plot;
     },
     emitWithXY(type, args = {}) {
       const canvas = this.$refs.canvas;
       this.$emit(type, {
         ...args,
-        plotX: +((f.mouse.x - canvas.offsetLeft) / canvas.width  - 0.5) * 2 / f.plot.zoom.x + f.plot.origin.x,
-        plotY: -((f.mouse.y - canvas.offsetTop ) / canvas.height - 0.5) * 2 / f.plot.zoom.y + f.plot.origin.y,
+        plotX: +((this.mouse.x - canvas.offsetLeft) / canvas.width  - 0.5) * 2 / this.plot.zoom.x + this.plot.origin.x,
+        plotY: -((this.mouse.y - canvas.offsetTop ) / canvas.height - 0.5) * 2 / this.plot.zoom.y + this.plot.origin.y,
       });
     },
   },
