@@ -50,6 +50,30 @@ export default {
       if (e.key !== 'Escape') return;
       this.toggle(false);
     },
+    addListeners() {
+      document.addEventListener(
+        'wheel',
+        this.scroll,
+        { passive: false },
+      );
+      document.addEventListener(
+        'keydown',
+        this.esc,
+      );
+    },
+    removeListeners() {
+      document.removeEventListener(
+        'wheel',
+        this.scroll,
+      );
+      document.removeEventListener(
+        'keydown',
+        this.esc,
+      );
+    },
+  },
+  unmounted() {
+    this.removeListeners();
   },
   watch: {
     show() {
@@ -57,24 +81,9 @@ export default {
     },
     d_show() {
       if (this.d_show) {
-        document.addEventListener(
-          'wheel',
-          this.scroll,
-          { passive: false },
-        );
-        document.addEventListener(
-          'keydown',
-          this.esc,
-        );
+        this.addListeners();
       } else {
-        document.removeEventListener(
-          'wheel',
-          this.scroll,
-        );
-        document.removeEventListener(
-          'keydown',
-          this.esc,
-        );
+        this.removeListeners();
       }
     },
   },
